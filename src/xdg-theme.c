@@ -852,8 +852,7 @@ _nk_xdg_theme_try_file(const gchar *dir, const gchar *name, const gchar * const 
     gsize i;
     for ( i = 0 ; extensions[i] != NULL ; ++i )
     {
-        gchar *file;
-        file = g_strconcat(dir, G_DIR_SEPARATOR_S, name, extensions[i], NULL);
+        gchar *file = g_strconcat(dir, G_DIR_SEPARATOR_S, name, extensions[i], NULL);
         if ( g_file_test(file, G_FILE_TEST_IS_REGULAR) )
         {
             *ret = file;
@@ -1003,9 +1002,8 @@ _nk_xdg_theme_icon_find_file(NkXdgThemeTheme *self, const gchar * const *names, 
                     }
                     else
                         g_free(file);
-                }
-                else
-                {
+                } else {
+                    g_free(best_file);
                     *ret = file;
                     return TRUE;
                 }
